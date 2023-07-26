@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: 'Car Hub',
   description:
-    'Creativaire is a creative agency that specializes in web design and development, branding, and digital marketing.',
+    'Car Hub',
 };
 
 export default function RootLayout({
@@ -18,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
         <main>{children}</main>
-        <Footer />
       </body>
     </html>
   );
