@@ -1,13 +1,10 @@
 import { Footer, Navbar } from '@/components';
 import './globals.css';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Car Hub',
   description:
-    'Car Hub',
+    'Discover the best car in the world. Find, book, or rent a car -- quickly and easily!',
 };
 
 export default function RootLayout({
@@ -17,8 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
+        <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
