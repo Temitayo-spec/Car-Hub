@@ -6,7 +6,7 @@ import { Key, useEffect, useState } from 'react';
 import { CarProps } from '../../typing';
 import Image from 'next/image';
 
-const Home = async () => {
+const Home = () => {
   const [allCars, setAllCars] = useState([]) as any;
   const [loading, setLoading] = useState(false);
 
