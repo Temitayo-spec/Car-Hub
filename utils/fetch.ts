@@ -1,21 +1,24 @@
 import axios from 'axios';
-import { CarProps } from '../typing';
+import { CarProps, FilterProps } from '../typing';
 
-interface Props {
-  model: string;
-}
-
-export async function fetchCars({ model }: Props) {
+export async function fetchCars(filters: FilterProps) {
+  const {manufacturer, model, year, limit, fuel} = filters;
   const headers = {
     'X-RapidAPI-Key': '7fdc768057msh8deed64057b0c75p192d45jsn80a690258ef9',
     'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com',
   };
 
   const response = await axios.get(
-    'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars',
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars`,
     {
       headers: headers,
-      params: { model },
+      params: {
+        manufacturer: manufacturer,
+        model: model,
+        year: year,
+        limit: limit,
+        fuel: fuel,
+      }
     }
   );
 
@@ -34,6 +37,6 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   url.searchParams.append('zoomtype', 'fullscreen');
   url.searchParams.append('modelYear', `${year}`);
   url.searchParams.append('angle', `${angle}`);
-  
+
   return `${url}`;
 };
