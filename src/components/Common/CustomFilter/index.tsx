@@ -5,25 +5,18 @@ import { useRouter } from 'next/navigation';
 import { Listbox, Transition } from '@headlessui/react';
 import { CustomFilterProps } from '../../../../typing';
 
-const CustomFilter = ({ title, options }: CustomFilterProps) => {
+const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
   const [selected, setSelected] = useState(options[0]);
-  const router = useRouter();
 
-  const handleUpdateParams = (e: { title: string; value: string }) => {
-    const searchParams = new URLSearchParams(window.location.search);
-
-    searchParams.set(title, e.value.toLowerCase());
-
-    const newParams = `${window.location.pathname}?${searchParams.toString()}`;
-
-    router.push(newParams);
-  };
   return (
     <div className="w-fit">
-      <Listbox value={selected} onChange={(e) => {
-        setSelected(e);
-        handleUpdateParams(e);
-      }}>
+      <Listbox
+        value={selected}
+        onChange={(e) => {
+          setSelected(e);
+          setFilter(e.value);
+        }}
+      >
         <div className="relative w-fit z-10">
           <Listbox.Button className="custom-filter__btn">
             <span className="block truncate">{selected.title}</span>

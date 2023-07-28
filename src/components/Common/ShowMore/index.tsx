@@ -1,19 +1,12 @@
 'use client';
 
 import { ShowMoreProps } from '../../../../typing';
-import { useRouter } from 'next/navigation';
 import CustomButton from '../CustomButton';
 
-const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
-  const router = useRouter();
+const ShowMore = ({ pageNumber, isNext, setLimit }: ShowMoreProps) => {
   const handleNavigation = () => {
-    const searchParams = new URLSearchParams(window.location.search);
-
-    searchParams.set('limit', `${(pageNumber + 1) * 10}`);
-
-    const newParams = `${window.location.pathname}?${searchParams.toString()}`;
-
-    router.push(newParams);
+    const limit = (pageNumber + 1) * 10;
+    setLimit(limit);
   };
   return (
     <div className="w-full flex-center gap-5 mt-10">
